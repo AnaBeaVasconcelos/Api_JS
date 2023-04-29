@@ -1,6 +1,6 @@
 // Variáveis e seleção de elementos
 const apiKey = "faff3b42837099234a07b40bda90a0f8";
-const apiCountryURL = "https://countryflagsapi.com/png/"
+const apiCountryURL = "https://flagsapi.com/"
 const apiUnsplash = "https://source.unsplash.com/1600x900/?";
 
 const citynput = document.querySelector("#city-input");
@@ -67,7 +67,7 @@ const showWeatherData = async (city) => {
     tempElement.innerText = parseInt(data.main.temp);
     descElement.innerText = data.weather[0].description;
     weatherIconElement.setAttribute("src", `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
-    countryElement.setAttribute("src", apiCountryURL + data.sys.country);
+    countryElement.setAttribute("src", apiCountryURL + data.sys.country + "/shiny/24.png");
     humidityElement.innerText = `${data.main.humidity}%`;
     windElement.innerText = `${data.wind.speed}km/h`;
 
@@ -84,6 +84,8 @@ searchBtn.addEventListener("click", async (e) => {
     const city = citynput.value;
 
     showWeatherData(city);
+
+    citynput.value = "";
 })
 
 citynput.addEventListener("keyup", (e) => {
@@ -91,6 +93,8 @@ citynput.addEventListener("keyup", (e) => {
         const city = e.target.value;
 
         showWeatherData(city);
+
+        citynput.value = "";
     }
 })
 
